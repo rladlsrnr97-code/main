@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#3d6df0">
+<title>증명사진 생성기 — 한국·일본 규격</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪪</text></svg>">
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap bar-in">
+    <h1>증명사진 생성기</h1>
+    <span class="sub">한국 · 일본 규격 자동 크롭</span>
+    <span class="badge" id="badge">규격 1종</span>
+  </div>
+</header>
+
+<main class="wrap grid">
+
+  <section class="col-left">
+    <div class="card drop" id="drop">
+      <input type="file" id="file" accept="image/*" hidden>
+      <div class="drop-in">
+        <div class="plus">＋</div>
+        <div class="drop-title" id="dropTitle">사진 선택</div>
+        <div class="drop-sub">탭하거나 사진을 끌어다 놓으세요</div>
+      </div>
+    </div>
+    <div class="row2">
+      <button class="btn ghost" id="btnPick">사진 열기</button>
+      <button class="btn ghost" id="btnCam">카메라로 촬영</button>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <h2>규격</h2><span class="muted">여러 개 선택 가능</span>
+        <button class="link" id="btnClear">전체 해제</button>
+      </div>
+      <div class="specs" id="specs"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2>옵션</h2></div>
+
+      <div class="opt">
+        <label>배경</label>
+        <div class="swatches" id="swatches"></div>
+      </div>
+
+      <div class="opt">
+        <label>피부 보정</label>
+        <input type="range" id="retouch" min="0" max="100" value="35">
+        <output id="retouchOut">35%</output>
+      </div>
+
+      <div class="opt">
+        <label>어깨 수평</label>
+        <input type="range" id="shoulder" min="0" max="100" value="100">
+        <output id="shoulderOut">100%</output>
+      </div>
+
+      <label class="check"><input type="checkbox" id="gray"><span></span>흑백 (일본 여권 등)</label>
+      <label class="check"><input type="checkbox" id="sheet"><span></span>인화시트 (인쇄할 때만)</label>
+      <div class="opt paper" id="paperRow" hidden>
+        <label>인화지</label>
+        <select id="paper"></select>
+      </div>
+      <p class="hint" id="paperHint">사진 파일만 저장합니다. 인쇄해서 잘라 쓸 때만 켜세요.</p>
+    </div>
+  </section>
+
+  <section class="col-right">
+    <div class="tabs" id="tabs"></div>
+    <div class="stage" id="stage">
+      <div class="empty" id="stageMsg">사진을 선택하면 여기에 미리보기가 표시됩니다</div>
+      <canvas id="preview" hidden></canvas>
+    </div>
+    <div class="info" id="info"></div>
+    <div class="warn" id="warn" hidden></div>
+    <div class="actions">
+      <button class="btn primary" id="btnSave" disabled>저장</button>
+      <button class="btn ghost" id="btnSaveAll" disabled>선택한 규격 전부 저장</button>
+    </div>
+    <p class="privacy">사진은 이 기기 안에서만 처리됩니다. 서버로 전송되지 않습니다.</p>
+  </section>
+
+</main>
+
+<div class="toast" id="toast" hidden></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
